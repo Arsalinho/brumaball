@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>BrumaBall</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap">
+<link rel="stylesheet" href="style.css"></head><body class="inmenu">
+<div id="top" class="hud"><div id="sc"><b id="sb">0</b><span id="tm">5:00</span><b id="so">0</b></div><div id="st"></div></div>
+<div id="bot" class="hud"><div id="spd">0<small> u/s</small></div><div class="bar"><div id="bf"></div></div><div id="bi">Turbo 100</div><div id="jp"></div><div id="cm"></div></div>
+<div id="help" class="hud"><table><tr><td>W / S</td><td>Acelerar / frenar</td></tr><tr><td>W / S (aire)</td><td>Inclinar adelante / atrás</td></tr><tr><td>A / D</td><td>Girar</td></tr><tr><td>Espacio</td><td>Saltar (2 veces)</td></tr><tr><td>Shift</td><td>Turbo</td></tr><tr><td>Ctrl / B</td><td>Derrapar</td></tr><tr><td>C</td><td>Cámara del balón</td></tr><tr><td>T</td><td>Recuperar coche</td></tr><tr><td>P</td><td>Reiniciar partido</td></tr><tr><td>Esc</td><td>Pausa</td></tr><tr><td>H</td><td>Ocultar ayuda</td></tr></table></div>
+<div id="err" style="display:none;position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);width:min(560px,92vw);z-index:99;background:#8a1226;color:#fff;font:14px/1.5 monospace;padding:16px 18px;border-radius:12px;white-space:pre-wrap"></div><div id="ar" class="hud"></div><div id="msg" class="hud"></div>
+<div id="menu"><div class="nav" role="navigation" aria-label="Menú principal">
+<div class="logo"><div class="orb"></div><h1>BrumaBall</h1></div><div class="tag">Fútbol con coches entre la niebla</div>
+<button type="button" class="it" id="nres" style="display:none"><b>Reanudar</b><small>Volver a la partida</small></button>
+<button type="button" class="it" id="nleave" style="display:none"><b>Salir de la sala</b><small>Volver al menú principal</small></button>
+<button type="button" class="it on" data-p="play"><b>Jugar</b><small>Partido contra bots</small></button>
+<button type="button" class="it" id="ntr"><b>Entrenamiento</b><small>Sin tiempo límite</small></button>
+<button type="button" class="it" data-p="mp"><b>Multijugador</b><small>Con código de sala</small></button>
+<button type="button" class="it" data-p="car"><b>Mi coche</b><small>Colores y llama del turbo</small></button>
+<button type="button" class="it" data-p="set"><b>Ajustes</b><small>Calidad, sonido y marcador</small></button>
+<button type="button" class="it" data-p="ctl"><b>Controles</b><small>Todas las teclas</small></button></div>
+<div class="panel" data-pn="play"><h2>Nuevo partido</h2>
+<div class="fld">Jugadores por equipo</div><div class="seg" id="mode"><button type="button" data-v="1" class="on">1 vs 1</button><button type="button" data-v="2">2 vs 2</button><button type="button" data-v="3">3 vs 3</button></div>
+<div class="fld">Dificultad de los bots</div><div class="seg" id="diff"><button type="button" data-v="0">Fácil</button><button type="button" data-v="1" class="on">Normal</button><button type="button" data-v="2">Difícil</button></div>
+<div class="fld">Duración</div><div class="seg" id="dur"><button type="button" data-v="180">3 min</button><button type="button" data-v="300" class="on">5 min</button><button type="button" data-v="600">10 min</button><button type="button" data-v="0">Libre</button></div>
+<button type="button" class="go" id="bplay">Empezar partido</button></div>
+<div class="panel" data-pn="mp" hidden><h2>Multijugador</h2>
+<div class="fld">Tu nombre</div><input type="text" id="nick" maxlength="12" value="Piloto" autocomplete="off">
+<button type="button" class="go" id="mpc">Crear sala</button>
+<div class="fld">O únete con el código de un amigo</div><div style="display:flex;gap:8px"><input type="text" id="code" maxlength="5" placeholder="ABCDE" autocomplete="off" style="text-transform:uppercase;letter-spacing:.2em"><button type="button" class="go" id="mpj" style="margin:0;width:auto;padding:0 18px">Unirse</button></div>
+<div id="nst" class="fld" role="status" style="min-height:2.6em"></div>
+<div class="fld">Uno crea la sala y comparte el código; los demás abren esta misma dirección web y se unen con él. Hasta 6 jugadores (3 contra 3). La duración se toma de «Jugar».</div></div>
+<div class="panel" data-pn="car" hidden><h2>Mi coche</h2><div class="fld">Carrocería</div><div class="sw" id="sw"></div>
+<div class="col"><label for="cb">Color personalizado</label><input type="color" id="cb" value="#2f8cff"></div>
+<div class="col"><label for="cr">Llantas</label><input type="color" id="cr" value="#dddddd"></div>
+<div class="col"><label for="cf">Llama del turbo</label><input type="color" id="cf" value="#ff7a1a"></div></div>
+<div class="panel" data-pn="set" hidden><h2>Ajustes</h2><div class="fld">Calidad gráfica</div><div class="seg" id="qual"><button type="button" data-v="0">Baja</button><button type="button" data-v="1">Media</button><button type="button" data-v="2" class="on">Alta</button></div>
+<div class="col"><label for="vol">Volumen</label><input type="range" id="vol" min="0" max="100" value="60"></div>
+<div class="col"><label for="mute">Silenciar</label><input type="checkbox" id="mute"></div>
+<div class="col"><label for="kmh">Velocidad en km/h</label><input type="checkbox" id="kmh"></div>
+<div class="col"><label for="hsc">Ocultar marcador</label><input type="checkbox" id="hsc"></div>
+<div class="col"><label for="nop">Sin pausa tras un gol</label><input type="checkbox" id="nop"></div></div>
+<div class="panel" data-pn="ctl" hidden></div>
+<div class="hint">↑ ↓ para moverte · Enter para elegir · Esc pausa durante la partida</div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>window.THREE||document.write('<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"><\/script>')</script>
+<script src="game.js"></script></body></html>
